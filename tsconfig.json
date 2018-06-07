@@ -1,0 +1,24 @@
+{
+  "include": [ // 用于表示 ts 管理的文件
+    "src/**/*"
+  ],
+  "exclude": [  // 用于表示 ts 排除的文件
+    "node_modules"
+  ],
+  "compilerOptions": { // 对象类型，设置编译的选项，不设置则使用默认配置，配置项比较多，后面再列
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "module": "esnext",
+    "target": "es5",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise"
+    ],
+    "sourceMap": true,
+    "pretty": true
+  }
+}
