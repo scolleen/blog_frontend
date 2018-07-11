@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article v-loading="true">
     <div class="banner">
       <!-- 导航 -->
       <div class="nav">

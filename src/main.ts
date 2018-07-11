@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import loading from './common/plugins/loading/index'
 
 Vue.config.productionTip = false
+Vue.use(loading)
 
 /* eslint-disable no-new */
 const vue = new Vue({
