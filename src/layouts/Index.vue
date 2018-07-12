@@ -27,7 +27,7 @@
     </div>
     <section>
       <div class="content">
-        <div class="title">你好，我是尹秀培</div>
+        <div class="title"></div>
       </div>
     </section>
   </article>
@@ -38,7 +38,7 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      loading: true
+      loading: false
     }
   }
 })
@@ -107,7 +107,8 @@ article {
   }
 }
 section {
-  width: 100%;
+  width: 1200px;
+  margin: 0 auto;
   .content {
   text-align: center;
   font-size: 20px;
