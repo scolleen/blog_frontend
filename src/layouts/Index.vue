@@ -2,10 +2,26 @@
   <article v-loading="loading">
     <div class="banner">
       <!-- 导航 -->
-      <div class="nav">
-        <div class="nav-item">博客</div>
-        <div class="nav-item">个人介绍</div>
-        <div class="nav-item">其他</div>
+      <div class="panel-main">
+        <div class="intro-main">
+          <div class="face">
+            <img width="100%" src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6BKsVQhI5MQvQW6iaicfibMkZPORDG28mnofAOLiaiciactA6qQc9U18S8qQFb7IiacvvkK30ZSalBdmOg/0"/>
+          </div>
+          <div class="name">
+            南方姑娘
+          </div>
+          <hr class="panel-divider">
+          <div class="panel-detail">
+            HELLO！我是尹秀培，一个前端开发者。目前在一家医疗互助行业的互联网公司工作，主要使用Vue作为框架开发微信端网站。
+          </div>
+          <hr class="panel-divider second-divider">
+          <div class="nav">
+            <div class="nav-item" @click="$router.push('/blog/index')">博客</div>
+            <div class="nav-item">简历</div>
+            <div class="nav-item">关于</div>
+            <div class="nav-item">其他</div>
+          </div>
+        </div>
       </div>
       <!-- logo 南方姑娘 -->
       <div class="logo">
@@ -14,16 +30,16 @@
       <!-- 左侧三角形阴影 -->
       <div class="tringle">
         <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
-          <polygon points="1800,1620 0,1620 0,0 500,0 " style="fill: rgb(9, 69, 132);; opacity: 0.7;"></polygon>
+          <polygon points="2200,1620 0,1620 0,0 600,0 " style="fill: rgb(9, 69, 132);; opacity: 0.7;"></polygon>
         </svg>
       </div>
       <!-- 最新文章 -->
-      <div class="article">
+      <!-- <div class="article">
         <div class="index">01</div>
         <div class="titile">你很高兴见到你</div>
         <div class="content">谢谢你路过了我的全世界</div>
         <div class="time">--2018年6月14日</div>
-      </div>
+      </div> -->
     </div>
     <section>
       <div class="content">
@@ -45,6 +61,7 @@ export default Vue.extend({
 </script>
 
 <style lang="less" scoped>
+@import '../../static/BankGothicLight/font.css';
 article {
   background: #ffffff;
   .banner {
@@ -61,22 +78,65 @@ article {
       color: #ffffff;
       z-index: 3;
     }
-    .nav {
+    .panel-main {
       position: relative;
-      display: flex;
-      height: 80%;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      z-index: 3;
-      .nav-item {
-        width: 150px;
-        height: 30px;
-        line-height: 30px;
-        margin: 0 20px;
-        border: 1px solid #ffffff;
-        display: inline-block;
-        cursor: pointer;
+      display: table;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
+      text-align: center;
+      .intro-main {
+        display: table-cell;
+        vertical-align: middle;
+        color: #ffffff;
+        margin: 0 auto;
+        font-family: BankGothicLight;
+        .face {
+          width: 90px;
+          height: 90px;
+          margin: 0 auto;
+          border-radius: 50%;
+          overflow: hidden;
+          box-sizing: border-box;
+          border: 2px solid #dfdfdf;
+        }
+        .name {
+          margin: 15px 0 0;
+          font-size: 2em;
+          letter-spacing: 4px;
+          font-weight: 400;
+        }
+        .panel-detail {
+          width: 600px;
+          margin: 0 auto;
+          line-height: 1.7em;
+        }
+        .panel-divider {
+          width: 30%;
+          margin: 20px auto;
+          border-top: 0.5px solid #afafaf;
+        }
+        .second-divider {
+          width: 10%;
+        }
+        .nav {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          line-height: 1em;
+          .nav-item {
+            margin: 0 12px;
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid #ffffff;
+            border-radius: 20px;
+            font-size: .9em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: none;
+          }
+        }
       }
     }
     .tringle {
@@ -101,7 +161,6 @@ article {
       }
       .time {
         color: #afafaf;
-        // font-size: 12px;
       }
     }
   }
