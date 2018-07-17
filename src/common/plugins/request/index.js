@@ -1,10 +1,10 @@
 import Request from './request'
 
-function plugin (Vue) {
+function plugin (Vue, options = {}) {
   if (plugin.installed) {
     return
   }
-  const request = new Request()
+  const request = new Request(options)
   Vue.request = request
   Object.defineProperties(Vue.prototype, {
     $request: {

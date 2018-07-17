@@ -56,6 +56,9 @@ export default Vue.extend({
     return {
       loading: false
     }
+  },
+  mounted () {
+    console.log()
   }
 })
 </script>
