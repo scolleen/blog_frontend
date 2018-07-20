@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-// import lodash from 'lodash'
-// import marked from 'marked'
 import mavonEditor from 'mavon-editor'
 import loading from './common/plugins/loading/index'
 import Request from './common/plugins/request/index'
@@ -18,8 +16,6 @@ Vue.use(loading)
 Vue.use(Request, {
   domain: 'https://api.kags.com/v1/'
 })
-// Vue.use(lodash)
-// Vue.use(marked)
 Vue.use(mavonEditor)
 
 Vue.config.productionTip = false

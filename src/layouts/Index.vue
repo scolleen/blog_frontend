@@ -10,6 +10,7 @@
           <div class="name">
             南方姑娘
           </div>
+          <div class="panel-detail">岁月流转，念念不忘，群碑未成，来日方长。</div>
           <hr class="panel-divider">
           <div class="panel-detail">
             HELLO！我是尹秀培，一个前端开发者。目前在一家医疗互助行业的互联网公司工作，主要使用Vue作为框架开发微信端网站。
@@ -33,13 +34,6 @@
           <polygon points="2200,1620 0,1620 0,0 600,0 " style="fill: rgb(9, 69, 132);; opacity: 0.7;"></polygon>
         </svg>
       </div>
-      <!-- 最新文章 -->
-      <!-- <div class="article">
-        <div class="index">01</div>
-        <div class="titile">你很高兴见到你</div>
-        <div class="content">谢谢你路过了我的全世界</div>
-        <div class="time">--2018年6月14日</div>
-      </div> -->
     </div>
     <section>
       <div class="content">
