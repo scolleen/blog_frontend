@@ -4,15 +4,20 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
 class Request {
-  constructor (options) {
-    this._config = options
+  constructor (config) {
+    this._config = config
   }
   getUrl (options) {
     let wholeUrl
     if (wholeUrl in options) {
       return options.wholeUrl
     } else {
-      return this._config.domain + options.url
+      let api = this._config.api
+      let url = options.url
+      if (typeof url === 'function') {
+        url = url(api)
+      }
+      return this._config.domain + url
     }
   }
   _responseHook = (response) => {
@@ -27,6 +32,7 @@ class Request {
     })
   }
   post (options) {
+    console.log(options)
     return Vue.http.post(this.getUrl(options), options.params, { emulateJSON: true }).then(this._responseHook, this._errorHook)
   }
   get (options) {

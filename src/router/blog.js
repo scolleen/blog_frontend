@@ -1,14 +1,19 @@
-import Index from '@/layouts/blog/Index'
-import Detail from '@/layouts/blog/Detail'
+import Index from '@/layouts/post/Index'
+import Detail from '@/layouts/post/Detail'
+import Create from '@/layouts/post/Create'
 
 export default [
   {
-    path: '/blog/index',
-    name: 'BlogIndex',
+    path: '/post/index',
+    name: 'PostIndex',
     component: Index
   }, {
-    path: '/blog/detail/:id',
-    name: 'BLogDetail',
+    path: '/post/detail/:id',
+    name: 'PostDetail',
     component: Detail
+  }, {
+    path: '/post/create',
+    name: 'PostCreate',
+    component: Create
   }
 ]

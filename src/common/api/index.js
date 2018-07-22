@@ -1,5 +1,6 @@
 export default {
-  user: {
-    info: 'user/userinfo'
+  post: {
+    index: 'post/index',
+    create: 'post/create'
   }
 }

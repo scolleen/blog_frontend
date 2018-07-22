@@ -10,11 +10,14 @@ import './common/api'
 import './common/directives/index'
 // 引入markdown 样式
 import 'mavon-editor/dist/css/index.css'
+// 引入api文件
+import api from './common/api/index'
 
 // USE插件
 Vue.use(loading)
 Vue.use(Request, {
-  domain: 'https://api.kags.com/v1/'
+  domain: 'http://127.0.0.1:3000/',
+  api: api
 })
 Vue.use(mavonEditor)
 

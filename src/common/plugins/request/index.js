@@ -9,7 +9,7 @@ function plugin (Vue, options = {}) {
   Object.defineProperties(Vue.prototype, {
     $request: {
       get () {
-        return request
+        return Vue.request
       }
     }
   })

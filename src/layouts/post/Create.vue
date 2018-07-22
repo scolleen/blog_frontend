@@ -4,10 +4,10 @@
     <main>
       <div class="title">
         <label>标题</label>
-        <input>
+        <input v-model="title">
       </div>
-      <mavon-editor v-model="value" :ishljs = "true" :scrollStyle="true" class="markdown"/>
-      <div class="btn" :class="{ disabled }">确认提交</div>
+      <mavon-editor v-model="content" :ishljs = "true" :scrollStyle="true" class="markdown"/>
+      <div class="btn" :class="{ disabled }" @click="onSubmit">确认提交</div>
     </main>
   </article>
 </template>
@@ -16,12 +16,22 @@
 export default {
   data () {
     return {
-      value: '# hello world'
+      title: '',
+      content: '# hello world'
     }
   },
   computed: {
     disabled () {
-      return (this.value === '' || this.value === undefined || this.value === null)
+      return !(this.value === '' || this.value === undefined || this.value === null)
+    }
+  },
+  methods: {
+    onSubmit () {
+      this.$request.post({
+        url: api => api.post.index
+      }).then(res => {
+        console.log(res)
+      })
     }
   }
 }
