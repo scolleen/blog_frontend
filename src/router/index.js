@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Blog from './blog'
+import Post from './post'
 import Index from '@/layouts/Index'
 
 Vue.use(Router)
@@ -12,6 +12,6 @@ export default new Router({
       name: 'Index',
       component: Index
     },
-    ...Blog
+    ...Post
   ]
 })

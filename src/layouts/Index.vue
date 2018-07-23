@@ -11,7 +11,7 @@
             南方姑娘
           </div>
           <div class="panel-detail">岁月流转，念念不忘，群碑未成，来日方长。</div>
-          <hr class="panel-divider">
+          <hr class="panel-divider" style="line-height: 1;">
           <div class="panel-detail">
             HELLO！我是尹秀培，一个前端开发者。目前在一家医疗互助行业的互联网公司工作，主要使用Vue作为框架开发微信端网站。
           </div>
