@@ -53,7 +53,6 @@ export default {
           this.payload = { ...body.payload }
           this.$nextTick(() => {
             this.count = this.$refs.content.$el.innerText.length
-            console.log(this.$refs.content)
           })
         }
         this.loading = false
@@ -65,18 +64,14 @@ export default {
       let year = time.substring(0, 4)
       return `${month} ${date}，${year}`
     }
-  },
-  watch: {
-    // payload (newVal) {
-    //   this.$nextTick(() => {
-    //     console.log(this.$refs.content.innerText)
-    //   })
-    // }
   }
 }
 </script>
 
 <style lang="less" scoped>
+img {
+  width: 100% !important;
+}
 article {
   width: 100vw;
   height: 100vh;
@@ -91,9 +86,10 @@ main {
   background-color: rgba(255, 255, 255, 0.85);
   margin: 85px auto 30px;
   border-radius: 10px;
-  padding: 30px 50px;
+  padding: 30px 50px 50px;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-size: .9em;
   .title {
     font-size: 30px;
     color: #333;

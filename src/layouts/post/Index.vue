@@ -179,8 +179,8 @@ article {
           }
         }
         .post-content {
-          line-height: 1.6;
           font-size: .9em;
+          line-height: 1.8;
           color: #333333;
           display: -webkit-box;
           -webkit-box-orient: vertical;

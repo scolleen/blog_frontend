@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article v-loading="loading">
     <header></header>
     <main>
       <div class="form">
@@ -19,6 +19,7 @@
 export default {
   data () {
     return {
+      loading: false,
       title: '',
       content: ''
     }
@@ -30,6 +31,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      this.loading = true
       this.$request.post({
         url: api => api.post.create,
         params: {
@@ -38,7 +40,11 @@ export default {
           type: 1
         }
       }).then(res => {
-        console.log(res)
+        if (res.body.code === 1) {
+          this.loading = false
+          window.alert('创建成功')
+          this.$router.push('/post/index')
+        }
       })
     }
   }
