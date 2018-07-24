@@ -1,11 +1,12 @@
 <template>
-  <article>
+  <article v-loading="loading">
     <nav-bar></nav-bar>
     <main>
       <div class="title">{{ payload.title }}</div>
       <div class="stuff">
-        <span>{{ payload.time.substring(0, 10) }}</span>
+        <span>{{ formatTime(payload.time) }}</span>
         <span>字数{{ count }}</span>
+        <span>作者：{{ payload.author }}</span>
       </div>
       <hr class="line">
       <vue-markdown ref="content" :source="payload.content"></vue-markdown>
@@ -23,7 +24,14 @@ export default {
   },
   data () {
     return {
-      payload: {}
+      loading: false,
+      payload: {
+        title: '',
+        content: '',
+        time: ''
+      },
+      count: 0,
+      month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
     }
   },
   mounted () {
@@ -33,6 +41,7 @@ export default {
   },
   methods: {
     getPostInfo () {
+      this.loading = true
       this.$request.post({
         url: api => api.post.read,
         params: {
@@ -42,9 +51,27 @@ export default {
         let body = response.body
         if (body.code === 1) {
           this.payload = { ...body.payload }
+          this.$nextTick(() => {
+            this.count = this.$refs.content.$el.innerText.length
+            console.log(this.$refs.content)
+          })
         }
+        this.loading = false
       })
+    },
+    formatTime (time) {
+      let date = time.substring(8, 10)
+      let month = this.month[parseInt(time.substring(5, 7)) - 1]
+      let year = time.substring(0, 4)
+      return `${month} ${date}，${year}`
     }
+  },
+  watch: {
+    // payload (newVal) {
+    //   this.$nextTick(() => {
+    //     console.log(this.$refs.content.innerText)
+    //   })
+    // }
   }
 }
 </script>
@@ -62,10 +89,11 @@ main {
   box-sizing: border-box;
   width: 950px;
   background-color: rgba(255, 255, 255, 0.85);
-  height: 1300px;
   margin: 85px auto 30px;
   border-radius: 10px;
-  padding: 15px 50px;
+  padding: 30px 50px;
+  color: #666;
+  line-height: 1.6;
   .title {
     font-size: 30px;
     color: #333;

@@ -17,7 +17,7 @@
           </div>
           <hr class="panel-divider second-divider">
           <div class="nav">
-            <div class="nav-item" @click="$router.push('/blog/index')">博客</div>
+            <div class="nav-item" @click="$router.push('/post/index')">博客</div>
             <div class="nav-item">简历</div>
             <div class="nav-item">关于</div>
             <div class="nav-item">其他</div>

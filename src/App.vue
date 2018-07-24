@@ -25,6 +25,7 @@ export default {
 </script>
 
 <style>
+@import './common/style/global.less';
 * {
   padding: 0;
   margin: 0;

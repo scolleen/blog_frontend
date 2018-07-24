@@ -32,7 +32,6 @@ class Request {
     })
   }
   post (options) {
-    console.log(options)
     return Vue.http.post(this.getUrl(options), options.params, { emulateJSON: true }).then(this._responseHook, this._errorHook)
   }
   get (options) {

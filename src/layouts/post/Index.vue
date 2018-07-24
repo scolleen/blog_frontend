@@ -1,5 +1,5 @@
 <template>
-  <article v-title="`博客`">
+  <article v-title="`博客`" v-loading="loading">
     <nav-bar></nav-bar>
     <div class="panel-container">
       <div class="nav">
@@ -19,16 +19,16 @@
       <main>
         <div class="container">
           <div class="content">
-            <div class="post">
-              <div class="post-title" @click="$router.push('/blog/detail/1')">
-                <span class="number">1</span>
-                后来的我们
+            <div class="post" v-for="(item, index) in list" :key="index">
+              <div class="post-title" @click="$router.push(`/post/detail/${item._id}`)">
+                <span class="number">{{ index + 1 }}</span>
+                {{ item.title }}
                 </div>
               <div class="post-content">
-                曾经，我以为自己是个很幽默的人，比如逗女孩开心，讲的是这样的笑话。
+                <vue-markdown ref="content" :source="item.content"></vue-markdown>
               </div>
               <div class="post-footer">
-                <span>五月 12, 2018 </span>
+                <span>{{ formatTime(item.time) }}</span>
               </div>
             </div>
           </div>
@@ -39,10 +39,41 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
 export default {
   components: {
-    NavBar
+    NavBar,
+    VueMarkdown
+  },
+  data () {
+    return {
+      loading: false,
+      list: [],
+      month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    }
+  },
+  mounted () {
+    this.getPost()
+  },
+  methods: {
+    getPost () {
+      this.loading = true
+      this.$request.get({
+        url: state => state.post.index
+      }).then(response => {
+        if (response.body.code === 1) {
+          this.list = response.body.list
+        }
+        this.loading = false
+      })
+    },
+    formatTime (time) {
+      let date = time.substring(8, 10)
+      let month = this.month[parseInt(time.substring(5, 7)) - 1]
+      let year = time.substring(0, 4)
+      return `${month} ${date}，${year}`
+    }
   }
 }
 </script>
@@ -130,7 +161,7 @@ article {
         margin-bottom: 30px;
         .post-title {
           margin-top: 0;
-          margin-bottom: .2em;
+          margin-bottom: .5em;
           font-size: 1.5em;
           color: #333;
           line-height: 1.3em;
@@ -148,8 +179,13 @@ article {
           }
         }
         .post-content {
+          line-height: 1.6;
           font-size: .9em;
           color: #333333;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 9;
+          overflow: hidden;
         }
         .post-footer {
           display: block;
