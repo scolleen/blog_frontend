@@ -28,7 +28,7 @@ export default Vue.extend({
 
 <style scoped>
  .loading-mask {
-    position: absolute;
+    position: fixed;
     z-index: 2000;
     background-color: hsla(0,0%,100%,.9);
     margin: 0;
@@ -36,6 +36,7 @@ export default Vue.extend({
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 200;
     transition: opacity 1s;
   }
   .loading {

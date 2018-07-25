@@ -1,7 +1,7 @@
 <template>
-  <article v-title="`博客`" v-loading="loading">
+  <article v-title="`博客`">
     <nav-bar></nav-bar>
-    <div class="panel-container">
+    <div class="panel-container" v-loading="loading">
       <div class="nav">
         <aside>
           <div class="face">
@@ -12,8 +12,7 @@
           <div class=""></div>
         </aside>
         <div class="time-line">
-          <div class="time-item">2018年</div>
-          <div class="time-item">2018年</div>
+          <div class="time-item" v-for="(item, index) in timeList" :key="index">{{ item._id }}年（{{ item.num }}）</div>
         </div>
       </div>
       <main>
@@ -29,12 +28,15 @@
               </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>
+                <span class="read">more</span>
               </div>
             </div>
           </div>
         </div>
       </main>
     </div>
+    <footer>
+    </footer>
   </article>
 </template>
 
@@ -50,23 +52,33 @@ export default {
     return {
       loading: false,
       list: [],
+      timeList: [],
       month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
     }
   },
   mounted () {
-    this.getPost()
+    this.init()
   },
   methods: {
-    getPost () {
+    init () {
       this.loading = true
-      this.$request.get({
-        url: state => state.post.index
-      }).then(response => {
-        if (response.body.code === 1) {
-          this.list = response.body.list
-        }
+      Promise.all([this.getPost(), this.getTimeLine()]).then(([list, body]) => {
+        this.list = list
+        this.timeList = body.time_list
         this.loading = false
       })
+    },
+    async getPost () {
+      let { body: { list } } = await this.$request.get({
+        url: state => state.post.index
+      })
+      return list
+    },
+    async getTimeLine () {
+      let { body } = await this.$request.get({
+        url: state => state.post.getTimeLine
+      })
+      return body
     },
     formatTime (time) {
       let date = time.substring(8, 10)
@@ -84,10 +96,9 @@ article {
   background: #f5f8f9;
   position: relative;
   display: block;
-  width: 100vw;
-  min-height: 100vh;
   box-sizing: border-box;
   font-family: BankGothicLight;
+  box-sizing: border-box;
 }
 .panel-container {
   padding-top: 60px;
@@ -130,6 +141,7 @@ article {
         padding: 8px;
         color: #666;
         margin-bottom: 10px;
+        cursor: pointer;
         &:last-child {
           margin-bottom: 0;
         }
@@ -140,6 +152,7 @@ article {
     width: 75%;
     border: 1px solid #dfdfdf;
     flex-grow: 1;
+    box-sizing: border-box;
     background: #eeeeee;
     // background: url('https://note.masterchan.me/wp-content/uploads/sites/2/2015/10/2235_54fb49b22239a.gif');
     .container {
@@ -192,9 +205,22 @@ article {
           margin: .7em 0 0 0;
           font-size: 13px;
           color: #666666;
+          span {
+            margin-right: 10px;
+          }
+          .read {
+            background: #e3e9eb;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+          }
         }
       }
     }
   }
+}
+footer {
+  height: 150px;
 }
 </style>

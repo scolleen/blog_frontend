@@ -26,7 +26,7 @@
       </div>
       <!-- logo 南方姑娘 -->
       <div class="logo">
-        <img src="/static/img/logo.png" height="30px"/>
+        <img src="/static/img/logo.png" width="100%"/>
       </div>
       <!-- 左侧三角形阴影 -->
       <div class="tringle">
@@ -74,6 +74,9 @@ article {
       font-size: 20px;
       color: #ffffff;
       z-index: 3;
+      img {
+        width: 150px;
+      }
     }
     .panel-main {
       position: relative;

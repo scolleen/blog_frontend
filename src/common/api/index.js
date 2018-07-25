@@ -2,6 +2,7 @@ export default {
   post: {
     index: 'post/index',
     read: 'post/read',
-    create: 'post/create'
+    create: 'post/create',
+    getTimeLine: 'post/get_time'
   }
 }
