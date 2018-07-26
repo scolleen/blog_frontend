@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="">
+    <transition name="pop-in">
       <router-view/>
     </transition>
   </div>
@@ -12,13 +12,6 @@ export default {
   data () {
     return {
       transitionName: ''
-    }
-  },
-  watch: {
-    $route (to, from) {
-      const toDepth = to.path.split('/').length
-      const fromDepth = from.path.split('/').length
-      this.transitionName = toDepth < fromDepth ? 'pop-out' : 'pop-in'
     }
   }
 }
@@ -41,26 +34,18 @@ body, div, p, h1 {
   padding: 0;
   margin: 0;
 }
-.pop-out-enter-active, .pop-out-leave-active, .pop-in-enter-active, .pop-in-leave-active {
+.pop-in-enter-active, .pop-in-leave-active {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   will-change: transform;
   transition: all 0.5s;
   width: 100%;
   height: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
   backface-visibility: hidden;
   perspective: 1000;
-}
-.pop-out-enter {
-  width: 100%;
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-}
-.pop-out-leave-active {
-  width: 100%;
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
 }
 .pop-in-enter {
   width: 100%;

@@ -44,17 +44,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  data () {
-    return {
-      loading: false
-    }
-  },
+import { Vue } from 'vue-property-decorator'
+export default class Index extends Vue {
+  loading = false
   mounted () {
-    console.log()
+    console.log('12344')
   }
-})
+}
 </script>
 
 <style lang="less" scoped>
