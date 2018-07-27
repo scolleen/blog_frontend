@@ -1,5 +1,5 @@
 <template>
-  <article v-title="`博客`">
+  <article v-title="`博客`" ref="body">
     <nav-bar></nav-bar>
     <div class="panel-container" v-loading="loading">
       <div class="nav">
@@ -33,6 +33,11 @@
             </div>
           </div>
         </div>
+         <div class="pagination">
+          <span class="page" v-show="page.page > 1" @click="onPrePage">上一页</span>
+          <span class="page" @click="onNextPage" v-show="page.page < page.all">下一页</span>
+          <span class="point">{{`${page.current}/${page.all}`}}</span>
+        </div>
       </main>
     </div>
     <footer>
@@ -50,6 +55,15 @@ export default {
   },
   data () {
     return {
+      search: {
+        show: true,
+        value: ''
+      },
+      page: {
+        page: 1,
+        current: 1,
+        all: 1
+      },
       loading: false,
       list: [],
       timeList: [],
@@ -57,24 +71,41 @@ export default {
     }
   },
   mounted () {
-    this.init()
+    this.getTimeLine().then(body => {
+      if (body.code === 1) {
+        this.timeList = body.time_list
+      }
+    }).then(() => {
+      this.getPost()
+    })
   },
   methods: {
-    init () {
+    onPrePage () {
+      this.page.page -= 1
+      this.getPost()
+    },
+    onNextPage () {
+      this.page.page += 1
+      this.getPost()
+    },
+    getPost () {
       this.loading = true
-      Promise.all([this.getPost(), this.getTimeLine()]).then(([list, body]) => {
-        this.list = list
-        this.timeList = body.time_list
+      this.$request.get({
+        url: state => state.post.index,
+        params: {
+          page: this.page.page
+        }
+      }).then(response => {
+        if (response.body.code === 1) {
+          this.list = response.body.list
+          this.page.current = response.body.current
+          this.page.all = response.body.all
+        }
         this.loading = false
       })
     },
-    async getPost () {
-      let { body: { list } } = await this.$request.get({
-        url: state => state.post.index
-      })
-      return list
-    },
     async getTimeLine () {
+      this.loading = true
       let { body } = await this.$request.get({
         url: state => state.post.getTimeLine
       })
@@ -86,6 +117,8 @@ export default {
       let year = time.substring(0, 4)
       return `${month} ${date}，${year}`
     }
+  },
+  watch: {
   }
 }
 </script>
@@ -154,7 +187,23 @@ article {
     flex-grow: 1;
     box-sizing: border-box;
     background: #eeeeee;
-    // background: url('https://note.masterchan.me/wp-content/uploads/sites/2/2015/10/2235_54fb49b22239a.gif');
+    .pagination {
+      display: flex;
+      flex-grow: 1;
+      margin: 30px 0;
+      align-items: center;
+      .page {
+        display: inline-block;
+        background: #fff;
+        border: 1px solid #999;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 30px;
+        color: #999;
+        cursor: pointer;
+        font-size: .7em;
+      }
+    }
     .container {
       width: 100%;
       height: 100%;
