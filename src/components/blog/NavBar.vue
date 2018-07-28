@@ -5,8 +5,8 @@
           <img src="/static/img/grey-logo.png" width="100%"/>
         </div>
         <div class="search">
-          <input class="input"/>
-          <span class="search-btn">搜索</span>
+          <input class="input" v-model="value"/>
+          <span class="search-btn" @click="onSearch">搜索</span>
         </div>
       </div>
     </div>
@@ -14,7 +14,30 @@
 
 <script>
 export default {
-  name: 'nav-bar'
+  name: 'nav-bar',
+  data () {
+    return {
+      loading: false,
+      value: '',
+      list: []
+    }
+  },
+  methods: {
+    onSearch () {
+      this.loading = true
+      this.$request.get({
+        url: state => state.post.search,
+        params: {
+          key: this.value
+        }
+      }).then(response => {
+        if (response.body.code === 1) {
+          this.list = response.body.list
+        }
+        this.loading = false
+      })
+    }
+  }
 }
 </script>
 
