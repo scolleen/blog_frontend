@@ -38,19 +38,20 @@
           <span class="page" @click="onNextPage" v-show="page.page < page.all">下一页</span>
           <span class="point">{{`${page.current}/${page.all}`}}</span>
         </div>
+        <post-footer class="bottom"></post-footer>
       </main>
     </div>
-    <footer>
-    </footer>
   </article>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
+import PostFooter from '@/components/blog/PostFooter'
 export default {
   components: {
     NavBar,
+    PostFooter,
     VueMarkdown
   },
   data () {
@@ -183,19 +184,21 @@ article {
   }
   main {
     width: 75%;
-    border: 1px solid #dfdfdf;
     flex-grow: 1;
     box-sizing: border-box;
     background: #eeeeee;
+    height: 100%;
+    margin-bottom: 100px;
     .pagination {
       display: flex;
       flex-grow: 1;
-      margin: 30px 0;
+      padding: 30px 0;
       align-items: center;
+      background: #f5f8f9;
       .page {
         display: inline-block;
         background: #fff;
-        border: 1px solid #999;
+        border: 1px solid #dfdfdf;
         border-radius: 20px;
         padding: 5px 15px;
         margin-right: 30px;
@@ -204,6 +207,10 @@ article {
         font-size: .7em;
       }
     }
+    .bottom {
+      background: #f5f8f9;
+      padding: 30px 0 0;
+    }
     .container {
       width: 100%;
       height: 100%;
@@ -211,6 +218,7 @@ article {
       background-position: bottom right;
       background-size: 600px;
       background-repeat: no-repeat;
+      border: 1px solid #dfdfdf;
     }
     .content {
       width: 100%;
