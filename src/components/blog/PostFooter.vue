@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <p>Copyright © 2018 yinxiupei.</p>
-    <p>本站所有内容皆遵循<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">CC BY-NC 3.0</a>协议.</p>
+    <p>本站所有内容皆遵循<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank">CC BY-NC 3.0</a>协议.</p>
   </div>
 </template>
 
