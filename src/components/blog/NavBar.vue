@@ -24,18 +24,19 @@ export default {
   },
   methods: {
     onSearch () {
-      this.loading = true
-      this.$request.get({
-        url: state => state.post.search,
-        params: {
-          key: this.value
-        }
-      }).then(response => {
-        if (response.body.code === 1) {
-          this.list = response.body.list
-        }
-        this.loading = false
-      })
+      window.alert('功能暂未上线')
+      // this.loading = true
+      // this.$request.get({
+      //   url: state => state.post.search,
+      //   params: {
+      //     key: this.value
+      //   }
+      // }).then(response => {
+      //   if (response.body.code === 1) {
+      //     this.list = response.body.list
+      //   }
+      //   this.loading = false
+      // })
     }
   }
 }
