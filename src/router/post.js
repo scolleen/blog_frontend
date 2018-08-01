@@ -1,6 +1,7 @@
 import Index from '@/layouts/post/Index'
 import Detail from '@/layouts/post/Detail'
 import Create from '@/layouts/post/Create'
+import List from '@/layouts/post/List'
 
 export default [
   {
@@ -15,5 +16,9 @@ export default [
     path: '/post/create',
     name: 'PostCreate',
     component: Create
+  }, {
+    path: '/post/list',
+    name: 'PostList',
+    component: List
   }
 ]
