@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Post from './post'
+import Resume from './resume'
 import Index from '@/layouts/Index'
+import AboutIndex from '@/layouts/about/Index'
 
 Vue.use(Router)
 export default new Router({
@@ -12,6 +14,12 @@ export default new Router({
       name: 'Index',
       component: Index
     },
-    ...Post
+    {
+      path: '/about/index',
+      name: 'AboutIndex',
+      component: AboutIndex
+    },
+    ...Post,
+    ...Resume
   ]
 })
