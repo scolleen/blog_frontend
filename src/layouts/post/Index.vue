@@ -28,7 +28,7 @@
               </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>
-                <span class="read">more</span>
+                <span class="read"  @click="$router.push(`/post/detail/${item._id}`)">more</span>
               </div>
             </div>
           </div>

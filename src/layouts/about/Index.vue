@@ -1,11 +1,10 @@
 <template>
   <article>
-    <div class="form-container">
+    <!-- <div class="form-container">
       <div class="form-item">
         <h2>## 关于我</h2>
         <div class="content-item">
-            <p>世界很美，而我刚好出发</p>
-            <del>我就是我，不一样的烟火</del>
+            <p>我是一个出生一个西南</p>
         </div>
       </div>
       <div class="form-item">
@@ -19,10 +18,11 @@
         <h2>## 关于杂句</h2>
         <div class="content-item">
             <p>岁月流转，念念不忘，群碑未成，来日方长。-- 蔡康永  来自《纪念碑谷》</p>
+            <p>不念过去，不畏将来。</p>
         </div>
       </div> 
     </div>
-  </article>
+  </article> -->
 </template>
 
 <style lang="less" scoped>
