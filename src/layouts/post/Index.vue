@@ -24,7 +24,8 @@
                 {{ item.title }}
                 </div>
               <div class="post-content">
-                <vue-markdown ref="content" :source="item.content"></vue-markdown>
+                <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
+                <!-- <vue-markdown ref="content" :source="item.content"></vue-markdown> -->
               </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>
@@ -48,11 +49,13 @@
 import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
 import PostFooter from '@/components/blog/PostFooter'
+import MarkdownEditor from '@/components/markdown/MarkdownEditor'
 export default {
   components: {
     NavBar,
     PostFooter,
-    VueMarkdown
+    VueMarkdown,
+    MarkdownEditor
   },
   data () {
     return {
@@ -81,6 +84,10 @@ export default {
     })
   },
   methods: {
+    highlight (code) {
+      console.log(code)
+      return code
+    },
     onPrePage () {
       this.page.page -= 1
       this.getPost()
