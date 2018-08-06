@@ -25,7 +25,6 @@
                 </div>
               <div class="post-content">
                 <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
-                <!-- <vue-markdown ref="content" :source="item.content"></vue-markdown> -->
               </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>
@@ -46,7 +45,6 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
 import PostFooter from '@/components/blog/PostFooter'
 import MarkdownEditor from '@/components/MarkdownEditor'
@@ -55,7 +53,6 @@ export default {
   components: {
     NavBar,
     PostFooter,
-    VueMarkdown,
     MarkdownEditor
   },
   data () {
@@ -126,8 +123,6 @@ export default {
       let year = time.substring(0, 4)
       return `${month} ${date}，${year}`
     }
-  },
-  watch: {
   }
 }
 </script>
