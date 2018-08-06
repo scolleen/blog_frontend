@@ -7,7 +7,6 @@
 
 <script>
 import marked from 'marked'
-// import util from './Util'
 export default {
   name: 'markdown-editor',
   props: {
@@ -27,12 +26,6 @@ export default {
   methods: {
     renderMd () {
       const renderer = new marked.Renderer()
-      // renderer.heading = (text, level) => {
-      //   let id = util.getFirstLetter(text)
-      //   id = id.replace(/\s/g, '_').replace(/\?|？|,/g, '')
-      //   return `<h${level} id="${id}">${text}</h${level}>`
-      // }
-      console.log(marked)
       this.html = marked(this.content, {
         breaks: true,
         headerIds: false,

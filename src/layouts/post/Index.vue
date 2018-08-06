@@ -49,7 +49,8 @@
 import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
 import PostFooter from '@/components/blog/PostFooter'
-import MarkdownEditor from '@/components/markdown/MarkdownEditor'
+import MarkdownEditor from '@/components/MarkdownEditor'
+import Prism from 'prismjs'
 export default {
   components: {
     NavBar,
@@ -85,8 +86,8 @@ export default {
   },
   methods: {
     highlight (code) {
-      console.log(code)
-      return code
+      let demo = Prism.highlight(code, Prism.languages.javascript, 'javascript')
+      return demo
     },
     onPrePage () {
       this.page.page -= 1
