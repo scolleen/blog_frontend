@@ -3,7 +3,7 @@
     <nav-bar></nav-bar>
     <div class="panel-container" v-loading="loading">
       <div class="nav">
-        <aside>
+        <aside @click="$router.push('/')">
           <div class="face">
             <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6BKsVQhI5MQvQW6iaicfibMkZPORDG28mnofAOLiaiciactA6qQc9U18S8qQFb7IiacvvkK30ZSalBdmOg/0" width="100%"/>
           </div>

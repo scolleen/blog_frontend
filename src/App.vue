@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <transition name="pop-in">
-      <router-view/>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+    </transition>
+    <transition name="pop-in">
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </transition>
   </div>
 </template>
@@ -18,24 +23,28 @@ export default {
 </script>
 
 <style>
-@import './common/style/global.less';
+@import "./common/style/global.less";
 * {
   padding: 0;
   margin: 0;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   height: 100%;
 }
-body, div, p, h1 {
+body,
+div,
+p,
+h1 {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-.pop-in-enter-active, .pop-in-leave-active {
+.pop-in-enter-active,
+.pop-in-leave-active {
   position: absolute;
   top: 0;
   bottom: 0;

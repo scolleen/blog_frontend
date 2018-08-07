@@ -7,7 +7,10 @@ export default [
   {
     path: '/post/index',
     name: 'PostIndex',
-    component: Index
+    component: Index,
+    meta: {
+      keepAlive: true
+    }
   }, {
     path: '/post/detail/:id',
     name: 'PostDetail',

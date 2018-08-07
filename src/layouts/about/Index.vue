@@ -31,11 +31,40 @@
         </div>
       </div>
       <div class="form-item">
-        新增留言
+        <p>新增留言</p>
+        <div class="form-input">
+          <label>• 内容</label>
+          <textarea class="input-content" v-model="comment.content"></textarea>
+        </div>
+        <div class="form-input">
+          <label>• 姓名</label>
+          <input class="input-content" v-model="comment.name"/>
+        </div>
+        <div class="form-input">
+          <label>• 联系方式</label>
+          <input class="input-content" v-model="comment.contact"/>
+        </div>
+        <div class="form-input">
+          <div class="submit">提交</div>
+        </div>
       </div>
     </div>
   </article>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      comment: {
+        content: '',
+        name: '',
+        contact: ''
+      }
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .form-container {
@@ -50,6 +79,48 @@
     padding: 5px 30px 15px;
     cursor: pointer;
     margin-bottom: 30px;
+    .form-input {
+      width: 100%;
+      margin: 15px auto;
+      label {
+        display: block;
+        color: #888;
+        font-size: 14px;
+        margin: 5px 0;
+      }
+      .input-content {
+        display: block;
+        width: 80%;
+        border-color: #eee;
+        outline: none;
+        border: 0;
+        padding: 8px;
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.16);
+        &:hover {
+          box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 6px 0 rgba(0,0,0,.16);
+        }
+      }
+      textarea {
+        height: 120px;
+        overflow: scroll;
+      }
+      input {
+        height: 20px;
+      }
+      .submit {
+        width: 100px;
+        display: inline-block;
+        line-height: 1;
+        padding: 8px 0;
+        font-size: 14px;
+        text-align: center;
+        background: #dfdfdf;
+        &:hover {
+          background: #bbbbbb
+        }
+      }
+    }
     h2 {
       color: #dfdfdf;
     }
