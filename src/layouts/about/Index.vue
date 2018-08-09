@@ -23,12 +23,13 @@
       </div>
       <div class="form-item">
         <h2>## 留言板</h2>
-        <div class="comment-container">
-          <div class="comment-item" v-for="(item, index) in 4" :key="index">
-            <p class="desc"># 春天花会开，夏天雨到来，秋天瓜果熟，冬天寒冷围四方春天花会开，夏天雨到来，秋天瓜果熟，冬天寒冷围四方春天花会开，夏天雨到来，秋天瓜果熟，冬天寒冷围四方春天花会开，夏天雨到来，秋天瓜果熟，冬天寒冷围四</p>
-            <p class="tips">#小小的脾气古怪 · 2018年08月3号</p>
+        <div class="comment-container" v-if="payload.length > 0">
+          <div class="comment-item" v-for="(item, index) in payload" :key="index">
+            <p class="desc">{{ item.content }}</p>
+            <p class="tips">#{{ item.name }} · {{ item.time.substring(0, 10) }}</p>
           </div>
         </div>
+        <div v-else class="point">暂无留言</div>
       </div>
       <div class="form-item">
         <p>新增留言</p>
@@ -45,7 +46,7 @@
           <input class="input-content" v-model="comment.contact"/>
         </div>
         <div class="form-input">
-          <div class="submit">提交</div>
+          <div class="submit" @click="onSubmit">提交</div>
         </div>
       </div>
     </div>
@@ -60,7 +61,39 @@ export default {
         content: '',
         name: '',
         contact: ''
-      }
+      },
+      payload: []
+    }
+  },
+  mounted () {
+    this.getCommentInfo()
+  },
+  methods: {
+    onSubmit () {
+      this.$request.post({
+        url: api => api.comment.create,
+        params: {
+          ...this.comment
+        }
+      }).then(response => {
+        let body = response.body
+        if (body.code === 1) {
+          window.toast(body.msg)
+        } else {
+          console.log(body.msg)
+          window.alert(body.msg)
+        }
+      })
+    },
+    getCommentInfo () {
+      this.$request.get({
+        url: api => api.comment.read
+      }).then(response => {
+        let body = response.body
+        if (body.code === 1) {
+          this.payload = body.payload
+        }
+      })
     }
   }
 }
@@ -72,13 +105,16 @@ export default {
   padding: 50px 20px;
   margin: 0 auto;
   box-sizing: border-box;
-  border-left: 1px solid #f7f7f7;
-  border-right: 1px solid #f9f9f9;
+  border-left: 1px solid #f6f6f6;
+  border-right: 1px solid #f6f6f6;
   .form-item {
     background: #ffffff;
     padding: 5px 30px 15px;
     cursor: pointer;
     margin-bottom: 30px;
+    .point {
+      text-align: center;
+    }
     .form-input {
       width: 100%;
       margin: 15px auto;
@@ -103,7 +139,6 @@ export default {
       }
       textarea {
         height: 120px;
-        overflow: scroll;
       }
       input {
         height: 20px;
@@ -143,6 +178,7 @@ export default {
         .tips {
           font-size: 12px;
           color: #cfcfcf;
+          line-height: 20px;
           text-align: right;
         }
         &:last-child {

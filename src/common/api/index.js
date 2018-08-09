@@ -5,5 +5,9 @@ export default {
     read: 'post/read',
     create: 'post/create',
     getTimeLine: 'post/get_time'
+  },
+  comment: {
+    create: 'comment/create',
+    read: 'comment/read'
   }
 }
