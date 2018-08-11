@@ -2,25 +2,38 @@
   <article v-loading="loading">
     <nav-bar></nav-bar>
     <main>
-      <div class="title">{{ payload.title }}</div>
-      <div class="stuff">
-        <span>{{ formatTime(payload.time) }}</span>
-        <span>字数{{ count }}</span>
-        <span>作者：{{ payload.author }}</span>
+      <div class="content">
+        <div class="title">{{ payload.title }}</div>
+        <div class="stuff">
+          <span>{{ formatTime(payload.time) }}</span>
+          <span>字数{{ count }}</span>
+          <span>作者：{{ payload.author }}</span>
+        </div>
+        <hr class="line">
+        <markdown-editor ref="content" :content="payload.content" :highlight="highlight"></markdown-editor>
       </div>
-      <hr class="line">
-      <vue-markdown ref="content" :source="payload.content"></vue-markdown>
+      <div class="comment">
+        <p class="point">留言评论区</p>
+        <comment-box>
+          <p slot="header">1223</p>
+          <div slot="content">你好，尹秀培</div>
+          <!-- <p slot="footer">2017</p> -->
+        </comment-box>
+      </div>
     </main>
   </article>
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
+import MarkdownEditor from '@/components/MarkdownEditor'
+import CommentBox from '@/components/blog/CommentBox'
+import Prism from 'prismjs'
 export default {
   components: {
     NavBar,
-    VueMarkdown
+    MarkdownEditor,
+    CommentBox
   },
   data () {
     return {
@@ -63,6 +76,10 @@ export default {
       let month = this.month[parseInt(time.substring(5, 7)) - 1]
       let year = time.substring(0, 4)
       return `${month} ${date}，${year}`
+    },
+    highlight (data) {
+      let code = Prism.highlight(data, Prism.languages.javascript, 'javascript')
+      return code
     }
   }
 }
@@ -83,34 +100,45 @@ article {
 main {
   box-sizing: border-box;
   width: 950px;
-  background-color: rgba(255, 255, 255, 0.85);
   margin: 85px auto 30px;
-  border-radius: 10px;
-  padding: 30px 50px 50px;
-  color: #666;
-  line-height: 1.8;
-  font-size: .9em;
-  .title {
-    font-size: 30px;
-    color: #333;
-    line-height: 1.3;
-    position: relative;
-    font-weight: bold;
-  }
-  .stuff {
-    margin-top: 20px;
+  .content {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 3px;
+    padding: 30px 50px 50px;
     color: #666;
-    font-size: 13px;
-    span {
-      margin-right: 20px;
-      display: inline-block;
+    line-height: 1.8;
+    font-size: .9em;
+    .title {
+      font-size: 30px;
+      color: #333;
+      line-height: 1.3;
+      position: relative;
+      font-weight: bold;
+    }
+    .stuff {
+      margin-top: 20px;
+      color: #666;
+      font-size: 13px;
+      span {
+        margin-right: 20px;
+        display: inline-block;
+      }
+    }
+    .line {
+      width: 200px;
+      margin: 25px 0 35px;
+      line-height: 1;
+      color: #eee;
     }
   }
-  .line {
-    width: 200px;
-    margin: 25px 0 35px;
-    line-height: 1;
-    color: #eee;
+  .comment {
+    background-color: rgba(255, 255, 255, 0.95);
+    margin: 20px 0;
+    padding: 20px 15px;
+    .point {
+      font-size: 16px;
+      line-height: 2;
+    }
   }
 }
 </style>

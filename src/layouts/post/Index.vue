@@ -7,7 +7,7 @@
           <div class="face">
             <img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6BKsVQhI5MQvQW6iaicfibMkZPORDG28mnofAOLiaiciactA6qQc9U18S8qQFb7IiacvvkK30ZSalBdmOg/0" width="100%"/>
           </div>
-          <div class="name">尹秀培</div>
+          <div class="name">YINXIUPEI</div>
           <div class="desc">Frontend Developer</div>
           <div class=""></div>
         </aside>
@@ -82,9 +82,9 @@ export default {
     })
   },
   methods: {
-    highlight (code) {
-      let demo = Prism.highlight(code, Prism.languages.javascript, 'javascript')
-      return demo
+    highlight (data) {
+      let code = Prism.highlight(data, Prism.languages.javascript, 'javascript')
+      return code
     },
     onPrePage () {
       this.page.page -= 1
@@ -106,6 +106,7 @@ export default {
           this.list = response.body.list
           this.page.current = response.body.current
           this.page.all = response.body.all
+          document.getElementById('app').scrollTop = 0
         }
         this.loading = false
       })
