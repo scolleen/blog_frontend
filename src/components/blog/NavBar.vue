@@ -1,7 +1,7 @@
 <template>
   <div class="panel-title">
       <div class="title-detail">
-        <div class="name">
+        <div class="name" @click="$router.push('/')">
           <img src="/static/img/grey-logo.png" width="100%"/>
         </div>
         <div class="search">
@@ -61,6 +61,7 @@ export default {
     align-items: center;
     .name {
       display: inline-block;
+      cursor: pointer;
       img {
         display: block;
         width: 100px;
