@@ -19,7 +19,7 @@
             {{ item.title }}
           </div>
           <div class="post-content">
-            <vue-markdown ref="content" :source="item.content"></vue-markdown>
+            <!-- <vue-markdown ref="content" :source="item.content"></vue-markdown> -->
           </div>
         </div>
       </main>
@@ -28,12 +28,10 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import NavBar from '@/components/blog/NavBar'
 export default {
   components: {
-    NavBar,
-    VueMarkdown
+    NavBar
   },
   data () {
     return {

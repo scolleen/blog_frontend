@@ -4,9 +4,13 @@
         <div class="name" @click="$router.push('/')">
           <img src="/static/img/grey-logo.png" width="100%"/>
         </div>
-        <div class="search">
-          <input class="input" v-model="value"/>
-          <span class="search-btn" @click="onSearch">搜索</span>
+        <div class="search" :class="focus">
+          <!-- <input class="input" v-model="value"/> -->
+          <!-- <span class="search-btn" @click="onSearch">搜索</span> -->
+          <div class="field">
+            <label aria-hidden="true" class="label">search</label>
+            <input aria-label="Name" class="input" required="required" type="text" ref="input">
+          </div>
         </div>
       </div>
     </div>
@@ -19,8 +23,18 @@ export default {
     return {
       loading: false,
       value: '',
-      list: []
+      list: [],
+      focus: ''
     }
+  },
+  mounted () {
+    this.$refs.input.addEventListener('focus', (e) => {
+      console.log(e)
+      this.focus = 'focus'
+    })
+    this.$refs.input.addEventListener('blur', (e) => {
+      this.focus = ''
+    })
   },
   methods: {
     onSearch () {
@@ -68,29 +82,66 @@ export default {
       }
     }
     .search {
-      border: 1px solid #f7f7f7;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-      border-radius: 5px;
-      overflow: hidden;
-      padding: 0px 0px 0 10px;
-      input {
-        border: 0;
-        outline: none;
-        width: 200px;
-        height: 35px;
-        display: inline-block;
-      }
-      .search-btn {
-        height: 35px;
-        line-height: 35px;
-        border-left: 1px solid #f7f7f7;
-        display: inline-block;
-        padding: 0 20px;
-        cursor: pointer;
-        &:hover {
-          background: #666;
-          color: #ffffff;
+      width: 240px;
+      cursor: text;
+      align-items: center;
+      color: inherit;
+      display: flex;
+      min-height: inherit;
+      position: relative;
+      .field {
+        width: 100%;
+        position: relative;
+        .label {
+          left: 0px;
+          right: auto;
+          top: 10px;
+          position: absolute;
+          color: rgba(0, 0, 0, .54);
+          z-index: 1;
         }
+        .input {
+          line-height: 20px;
+          padding: 8px 0;
+          max-width: 100%;
+          min-width: 0px;
+          width: 100%;
+          outline: none;
+          box-sizing: border-box;
+          border: 0;
+          z-index: 2;
+        }
+      }
+      &:before, &:after {
+        bottom: -1px;
+        content: '';
+        left: 0;
+        position: absolute;
+        transition: .3s cubic-bezier(.25,.8,.5,1);
+        width: 100%;
+        border-color: rgba(0, 0, 0, .42);
+      }
+      &:before {
+        border-style: solid;
+        border-width: thin 0 0 0;
+      }
+      &:after {
+        border-color: currentColor;
+        border-style: solid;
+        border-width: thin 0 thin 0;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+      }
+      &:hover {
+        &::before {
+          border-color: rgba(0, 0, 0, .5);
+        }
+      }
+    }
+    .focus {
+      color: #1867c0 !important;
+      &:after {
+        transform: scaleX(1);
       }
     }
   }
