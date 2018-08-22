@@ -26,6 +26,9 @@
               <div class="post-content">
                 <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
               </div>
+              <div class="post-tag">
+                <tag type="orange">#前端</tag>
+              </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>
                 <span class="read"  @click="$router.push(`/post/detail/${item._id}`)">more</span>
@@ -48,12 +51,14 @@
 import NavBar from '@/components/blog/NavBar'
 import PostFooter from '@/components/blog/PostFooter'
 import MarkdownEditor from '@/components/MarkdownEditor'
+import Tag from '@/components/tag'
 import Prism from 'prismjs'
 export default {
   components: {
     NavBar,
     PostFooter,
-    MarkdownEditor
+    MarkdownEditor,
+    Tag
   },
   data () {
     return {
@@ -260,6 +265,9 @@ article {
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 9;
           overflow: hidden;
+        }
+        .post-tag {
+          margin: 10px 0;
         }
         .post-footer {
           display: block;
