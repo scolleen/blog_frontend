@@ -5,11 +5,12 @@
           <img src="/static/img/grey-logo.png" width="100%"/>
         </div>
         <div class="search" :class="focus">
-          <!-- <input class="input" v-model="value"/> -->
-          <!-- <span class="search-btn" @click="onSearch">搜索</span> -->
           <div class="field">
-            <label aria-hidden="true" class="label">search</label>
+            <label ref="label" aria-hidden="true" class="label">search</label>
             <input aria-label="Name" class="input" required="required" type="text" ref="input">
+            <span class="btn" @click="onSearch">
+              <i class="iconfont icon-sousuo"></i>
+            </span>
           </div>
         </div>
       </div>
@@ -29,28 +30,29 @@ export default {
   },
   mounted () {
     this.$refs.input.addEventListener('focus', (e) => {
-      console.log(e)
+      this.$refs.label.style.display = 'none'
       this.focus = 'focus'
     })
     this.$refs.input.addEventListener('blur', (e) => {
+      this.$refs.label.style.display = 'block'
       this.focus = ''
     })
   },
   methods: {
     onSearch () {
-      window.alert('功能暂未上线')
-      // this.loading = true
-      // this.$request.get({
-      //   url: state => state.post.search,
-      //   params: {
-      //     key: this.value
-      //   }
-      // }).then(response => {
-      //   if (response.body.code === 1) {
-      //     this.list = response.body.list
-      //   }
-      //   this.loading = false
-      // })
+      this.loading = true
+      this.$request.get({
+        url: state => state.post.search,
+        params: {
+          key: this.value
+        }
+      }).then(response => {
+        if (response.body.code === 1) {
+          this.$router.push('/post/list')
+          this.list = response.body.list
+        }
+        this.loading = false
+      })
     }
   }
 }
@@ -110,6 +112,17 @@ export default {
           box-sizing: border-box;
           border: 0;
           z-index: 2;
+        }
+        .btn {
+          position: absolute;
+          right: 0;
+          top: 5px;
+          display: inline-block;
+          padding: 3px 15px;
+          cursor: pointer;
+          i {
+            font-size: 20px;
+          }
         }
       }
       &:before, &:after {
