@@ -54,7 +54,7 @@ export default {
 <style lang="less" scoped>
 main {
   box-sizing: border-box;
-  width: 1200px;
+  max-width: 1200px;
   margin: 20px auto;
   .form {
     margin: 20px auto;

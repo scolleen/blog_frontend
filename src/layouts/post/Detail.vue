@@ -13,12 +13,21 @@
         <markdown-editor ref="content" :content="payload.content" :highlight="highlight"></markdown-editor>
       </div>
       <div class="comment">
-        <p class="point">留言评论区</p>
-        <comment-box>
-          <p slot="header">1223</p>
-          <div slot="content">你好，尹秀培</div>
-          <!-- <p slot="footer">2017</p> -->
+        <div class="point">
+          <i class="iconfont icon-pinglun1"></i> 写评论
+        </div>
+        <comment-input @onClick="submitComment"></comment-input>
+        <div class="point">
+          <i class="iconfont icon-pinglun"></i> 评论区
+        </div>
+        <comment-box v-if="commentList.length > 0" v-for="(item, index) in commentList" :key="index">
+          <p slot="header" class="title">
+            <span class="name">{{ item.name }}</span>
+            <span class="time">{{ item.time.substring(0, 10) }}</span>
+          </p>
+          <div slot="content">{{ item.content }}</div>
         </comment-box>
+        <p v-if="commentList.length === 0">暂无评论信息</p>
       </div>
     </main>
   </article>
@@ -28,12 +37,14 @@
 import NavBar from '@/components/blog/NavBar'
 import MarkdownEditor from '@/components/MarkdownEditor'
 import CommentBox from '@/components/blog/CommentBox'
+import CommentInput from '@/components/blog/CommentInput'
 import Prism from 'prismjs'
 export default {
   components: {
     NavBar,
     MarkdownEditor,
-    CommentBox
+    CommentBox,
+    CommentInput
   },
   data () {
     return {
@@ -43,12 +54,14 @@ export default {
         content: '',
         time: ''
       },
+      commentList: [],
       count: 0,
       month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
     }
   },
   mounted () {
     this.getPostInfo()
+    this.getCommentInfo()
   },
   computed: {
   },
@@ -69,6 +82,34 @@ export default {
           })
         }
         this.loading = false
+      })
+    },
+    getCommentInfo () {
+      this.loading = true
+      this.$request.get({
+        url: api => api.comment.read,
+        params: {
+          arcticle_id: this.$route.params.id
+        }
+      }).then(reslut => {
+        this.commentList = reslut.body.payload
+        console.log(this.commentList.length > 0)
+      })
+    },
+    submitComment (options) {
+      let articleId = this.$route.params.id
+      this.$request.post({
+        url: api => api.comment.create,
+        params: {
+          arcticle_id: articleId,
+          ...options
+        }
+      }).then(response => {
+        if (response.body.code === 1) {
+          window.toast('创建成功')
+        } else {
+          window.alert('创建失败')
+        }
       })
     },
     formatTime (time) {
@@ -134,10 +175,25 @@ main {
   .comment {
     background-color: rgba(255, 255, 255, 0.95);
     margin: 20px 0;
-    padding: 20px 15px;
+    padding: 20px 40px;
     .point {
       font-size: 16px;
       line-height: 2;
+      margin-bottom: 10px;
+      color: #555;
+      i {
+        color: #555;
+      }
+    }
+    .title {
+      position: relative;
+      .time {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        font-size: 13px;
+        color: #888;
+      }
     }
   }
 }

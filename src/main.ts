@@ -16,7 +16,8 @@ import api from './common/api/index'
 // USE插件
 Vue.use(loading)
 Vue.use(Request, {
-  domain: 'http://111.231.77.177:3000/',
+  // domain: 'http://111.231.77.177:3000/',
+  domain: 'http://127.0.0.1:3000/',
   api: api
 })
 Vue.use(mavonEditor)

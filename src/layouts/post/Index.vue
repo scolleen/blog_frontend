@@ -27,7 +27,7 @@
                 <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
               </div>
               <div class="post-tag">
-                <tag type="orange">#前端</tag>
+                <!-- <tag type="orange">#前端</tag> -->
               </div>
               <div class="post-footer">
                 <span>{{ formatTime(item.time) }}</span>

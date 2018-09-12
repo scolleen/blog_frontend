@@ -41,6 +41,10 @@ export default {
     onClose () {
       this.alert.show = false
     },
+    initToast () {
+      window.toast = (content, type = 'primary') => {
+      }
+    },
     initAlert () {
       window.alert = (content, title) => {
         if (typeof content === 'object') {

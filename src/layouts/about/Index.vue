@@ -33,35 +33,20 @@
       </div>
       <div class="form-item">
         <p>新增留言</p>
-        <div class="form-input">
-          <label>• 内容</label>
-          <textarea class="input-content" v-model="comment.content"></textarea>
-        </div>
-        <div class="form-input">
-          <label>• 姓名</label>
-          <input class="input-content" v-model="comment.name"/>
-        </div>
-        <div class="form-input">
-          <label>• 联系方式</label>
-          <input class="input-content" v-model="comment.contact"/>
-        </div>
-        <div class="form-input">
-          <div class="submit" @click="onSubmit">提交</div>
-        </div>
+          <comment-input @onClick="onSubmit"></comment-input>
       </div>
     </div>
   </article>
 </template>
 
 <script>
+import CommentInput from '@/components/blog/CommentInput'
 export default {
+  components: {
+    CommentInput
+  },
   data () {
     return {
-      comment: {
-        content: '',
-        name: '',
-        contact: ''
-      },
       payload: []
     }
   },
@@ -69,18 +54,19 @@ export default {
     this.getCommentInfo()
   },
   methods: {
-    onSubmit () {
+    onSubmit (options) {
       this.$request.post({
         url: api => api.comment.create,
         params: {
-          ...this.comment
+          ...options,
+          type: 1
         }
       }).then(response => {
         let body = response.body
         if (body.code === 1) {
           window.toast(body.msg)
+          this.getCommentInfo()
         } else {
-          console.log(body.msg)
           window.alert(body.msg)
         }
       })
