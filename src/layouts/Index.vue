@@ -20,7 +20,7 @@
             <div class="nav-item" @click="$router.push('/post/index')">博客</div>
             <div class="nav-item" @click="$router.push('/resume/index')">简历</div>
             <div class="nav-item" @click="$router.push('/about/index')">关于</div>
-            <div class="nav-item">其他</div>
+            <div class="nav-item" @click="$router.push('/other/index')">其他</div>
           </div>
         </div>
       </div>

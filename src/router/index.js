@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Post from './post'
 import Resume from './resume'
+import Other from './other'
 import Index from '@/layouts/Index'
 import AboutIndex from '@/layouts/about/Index'
 
@@ -20,6 +21,7 @@ export default new Router({
       component: AboutIndex
     },
     ...Post,
-    ...Resume
+    ...Resume,
+    ...Other
   ]
 })

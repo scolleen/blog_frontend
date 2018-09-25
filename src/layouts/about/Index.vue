@@ -7,13 +7,13 @@
           <p>我是一个出生一个西南</p>
         </div>
       </div>
-      <div class="form-item">
+      <!-- <div class="form-item">
         <h2>## 关于背景音乐</h2>
         <div class="content-item">
           <p>《独家记忆》第一次听到这首歌曲，就念念不忘。我喜欢你，是我独家的记忆...</p>
           <p>《独家记忆》个人是很喜欢古风类的音乐和歌曲，当然不会忽略掉它。大家有什么好听的古风歌曲，欢迎推荐</p>
         </div>
-      </div>
+      </div> -->
       <div class="form-item">
         <h2>## 关于杂句</h2>
         <div class="content-item">
