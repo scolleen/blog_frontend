@@ -17,7 +17,7 @@ class Request {
       if (typeof url === 'function') {
         url = url(api)
       }
-      return this._config.domain + url
+      return this._config.domain + this._config.prefix + url
     }
   }
   _responseHook = (response) => {

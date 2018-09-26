@@ -1,35 +1,37 @@
 <template>
   <article v-loading="loading">
     <nav-bar></nav-bar>
-    <main>
-      <div class="content">
-        <div class="title">{{ payload.title }}</div>
-        <div class="stuff">
-          <span>{{ formatTime(payload.time) }}</span>
-          <span>字数{{ count }}</span>
-          <span>作者：{{ payload.author }}</span>
+    <div class="container">
+      <main>
+        <div class="content">
+          <div class="title">{{ payload.title }}</div>
+          <div class="stuff">
+            <span>{{ formatTime(payload.time) }}</span>
+            <span>字数{{ count }}</span>
+            <span>作者：{{ payload.author }}</span>
+          </div>
+          <hr class="line">
+          <markdown-editor ref="content" :content="payload.content" :highlight="highlight"></markdown-editor>
         </div>
-        <hr class="line">
-        <markdown-editor ref="content" :content="payload.content" :highlight="highlight"></markdown-editor>
-      </div>
-      <div class="comment">
-        <div class="point">
-          <i class="iconfont icon-pinglun1"></i> 写评论
+        <div class="comment">
+          <div class="point">
+            <i class="iconfont icon-pinglun1"></i> 写评论
+          </div>
+          <comment-input @onClick="submitComment"></comment-input>
+          <div class="point">
+            <i class="iconfont icon-pinglun"></i> 评论区
+          </div>
+          <comment-box v-if="commentList.length > 0" v-for="(item, index) in commentList" :key="index">
+            <p slot="header" class="title">
+              <span class="name">{{ item.name }}</span>
+              <span class="time">{{ item.time.substring(0, 10) }}</span>
+            </p>
+            <div slot="content">{{ item.content }}</div>
+          </comment-box>
+          <p v-if="commentList.length === 0">暂无评论信息</p>
         </div>
-        <comment-input @onClick="submitComment"></comment-input>
-        <div class="point">
-          <i class="iconfont icon-pinglun"></i> 评论区
-        </div>
-        <comment-box v-if="commentList.length > 0" v-for="(item, index) in commentList" :key="index">
-          <p slot="header" class="title">
-            <span class="name">{{ item.name }}</span>
-            <span class="time">{{ item.time.substring(0, 10) }}</span>
-          </p>
-          <div slot="content">{{ item.content }}</div>
-        </comment-box>
-        <p v-if="commentList.length === 0">暂无评论信息</p>
-      </div>
-    </main>
+      </main>
+    </div>
   </article>
 </template>
 
@@ -93,7 +95,6 @@ export default {
         }
       }).then(reslut => {
         this.commentList = reslut.body.payload
-        console.log(this.commentList.length > 0)
       })
     },
     submitComment (options) {
@@ -131,12 +132,16 @@ img {
   width: 100% !important;
 }
 article {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding: 1px;
+  overflow: hidden;
   box-sizing: border-box;
-  overflow: scroll;
-  background: url('/static/img/sky.jpg') 100% no-repeat;
+  background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/sky.jpg') 100% no-repeat;
+}
+.container {
+  height: 100%;
+  overflow-y: scroll;
 }
 main {
   box-sizing: border-box;
@@ -147,14 +152,15 @@ main {
     border-radius: 3px;
     padding: 30px 50px 50px;
     color: #666;
-    line-height: 1.8;
-    font-size: .9em;
+    line-height: 2;
+    font-size: 1em;
     .title {
       font-size: 30px;
       color: #333;
       line-height: 1.3;
       position: relative;
       font-weight: bold;
+      font-family: BankGothicLight;
     }
     .stuff {
       margin-top: 20px;

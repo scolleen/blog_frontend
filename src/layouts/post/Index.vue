@@ -136,11 +136,10 @@ export default {
 <style lang="less" scoped>
 @import '../../../static/BankGothicLight/font.css';
 article {
-  background: #f5f8f9;
+  background: #f5f8f9 !important;
   position: relative;
   display: block;
   box-sizing: border-box;
-  font-family: BankGothicLight;
   box-sizing: border-box;
 }
 .panel-container {
@@ -223,7 +222,7 @@ article {
     .container {
       width: 100%;
       height: 100%;
-      background: url('/static/img/flower.jpg');
+      background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/flower.jpg');
       background-position: bottom right;
       background-size: 600px;
       background-repeat: no-repeat;
@@ -244,6 +243,7 @@ article {
           font-size: 1.5em;
           color: #333;
           line-height: 1.3em;
+            font-family: BankGothicLight;
           cursor: pointer;
           .number {
             height: 1.3em;
@@ -258,8 +258,8 @@ article {
           }
         }
         .post-content {
-          font-size: .9em;
-          line-height: 1.8;
+          font-size: 1em;
+          line-height: 2;
           color: #333333;
           display: -webkit-box;
           -webkit-box-orient: vertical;

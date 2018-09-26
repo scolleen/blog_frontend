@@ -56,13 +56,12 @@ export default class Index extends Vue {
 <style lang="less" scoped>
 @import '../../static/BankGothicLight/font.css';
 article {
-  background: #ffffff;
   .banner {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: url('/static/img/banner.png') 100%;
+    background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/banner.jpg') 100%;
     .logo {
       position: absolute;
       top: 60px;

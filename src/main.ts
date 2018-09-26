@@ -17,7 +17,8 @@ import api from './common/api/index'
 Vue.use(loading)
 Vue.use(Request, {
   // domain: 'http://111.231.77.177:3000/',
-  domain: 'http://mini.smilec.cc:3000/',
+  domain: 'https://mini.smilec.cc/api/',
+  prefix: '',
   api: api
 })
 Vue.use(mavonEditor)

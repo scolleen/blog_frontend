@@ -4,7 +4,16 @@
       <div class="form-item">
         <h2>## 关于我</h2>
         <div class="content-item">
-          <p>我是一个出生一个西南</p>
+          <p>Hi, 你好！我是南方姑娘。</p>
+          <p>很高兴你来到这里，这是一个简单个人网站。现在内容东西比较少，以后可能会有关前端技术的小文章，也可能会有关于个人的闲言碎语，也可能会有你驻足的痕迹，当然可能还有你留下的文字。。。</p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      <div class="form-item">
+        <h2>## 关于网站</h2>
+        <div class="content-item">
+          <p>这是一个前端使用 Vue + Router + Vue-Resource，服务器端使用 koa，数据库使用 MongoDB的SPA网站。后续更多功能开发中。。。</p>
         </div>
       </div>
       <!-- <div class="form-item">
@@ -96,7 +105,6 @@ export default {
   .form-item {
     background: #ffffff;
     padding: 5px 30px 15px;
-    cursor: pointer;
     margin-bottom: 30px;
     .point {
       text-align: center;
@@ -146,10 +154,11 @@ export default {
       color: #dfdfdf;
     }
     .content-item {
-        font-size: 14px;
+        font-size: 15px;
         margin: 5px;
         p {
             line-height: 1.5;
+            margin-bottom: 8px;
         }
     }
     .comment-container {
