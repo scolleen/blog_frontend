@@ -124,7 +124,7 @@
               </li>
               <li>
                 <span class="name">地址：</span>
-                <span class="desc"><a href="https://mini-g.com" target="_blank">https://mini-g.com</a></span>
+                <span class="desc"><a href="https://mini.smilec.cc" target="_blank">https://mini.smilec.cc</a></span>
               </li>
             </ul>
           </div>

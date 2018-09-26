@@ -24,7 +24,7 @@
                 {{ item.title }}
                 </div>
               <div class="post-content">
-                <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
+                <markdown-editor :content="item.content.substring(0, 400)" :highlight="highlight"></markdown-editor>
               </div>
               <div class="post-tag">
                 <!-- <tag type="orange">#前端</tag> -->
