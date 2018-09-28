@@ -8,6 +8,7 @@
         <div class="footer" @click="onClose">确定</div>
       </div>
     </div>
+    <nav-bar v-if="showNav"></nav-bar>
     <transition name="slide-fade">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -20,8 +21,12 @@
 </template>
 
 <script>
+import NavBar from '@/components/blog/NavBar'
 export default {
   name: 'App',
+  components: {
+    NavBar
+  },
   data () {
     return {
       transitionName: '',
@@ -32,6 +37,14 @@ export default {
         content: '',
         extraClass: ''
       }
+    }
+  },
+  computed: {
+    showNav () {
+      if (this.$route.path === '/') {
+        return false
+      }
+      return true
     }
   },
   mounted () {

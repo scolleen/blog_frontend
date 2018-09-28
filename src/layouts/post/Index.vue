@@ -1,6 +1,5 @@
 <template>
   <article v-title="`博客`" ref="body">
-    <nav-bar></nav-bar>
     <div class="panel-container" v-loading="loading">
       <div class="nav">
         <aside @click="$router.push('/')">
@@ -48,14 +47,12 @@
 </template>
 
 <script>
-import NavBar from '@/components/blog/NavBar'
 import PostFooter from '@/components/blog/PostFooter'
 import MarkdownEditor from '@/components/MarkdownEditor'
 import Tag from '@/components/tag'
 import Prism from 'prismjs'
 export default {
   components: {
-    NavBar,
     PostFooter,
     MarkdownEditor,
     Tag
@@ -143,7 +140,7 @@ article {
   box-sizing: border-box;
 }
 .panel-container {
-  padding-top: 60px;
+  padding-top: 15px;
   display: flex;
   max-width: 1250px;
   margin: 0 auto;

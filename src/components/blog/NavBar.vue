@@ -62,10 +62,8 @@ export default {
 <style lang="less" scoped>
 .panel-title {
   background: #ffffff;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   border: 1px solid #f7f7f7;
   z-index: 10;
   .title-detail {

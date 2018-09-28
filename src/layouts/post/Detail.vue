@@ -1,6 +1,5 @@
 <template>
   <article v-loading="loading">
-    <nav-bar></nav-bar>
     <div class="container">
       <main>
         <div class="content">
@@ -36,14 +35,12 @@
 </template>
 
 <script>
-import NavBar from '@/components/blog/NavBar'
 import MarkdownEditor from '@/components/MarkdownEditor'
 import CommentBox from '@/components/blog/CommentBox'
 import CommentInput from '@/components/blog/CommentInput'
 import Prism from 'prismjs'
 export default {
   components: {
-    NavBar,
     MarkdownEditor,
     CommentBox,
     CommentInput
@@ -134,7 +131,6 @@ img {
 article {
   width: 100%;
   height: 100vh;
-  padding: 1px;
   overflow: hidden;
   box-sizing: border-box;
   background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/sky.jpg') 100% no-repeat;
@@ -146,7 +142,7 @@ article {
 main {
   box-sizing: border-box;
   width: 950px;
-  margin: 85px auto 30px;
+  margin: 30px auto;
   .content {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 3px;
@@ -180,7 +176,7 @@ main {
   }
   .comment {
     background-color: rgba(255, 255, 255, 0.95);
-    margin: 20px 0;
+    margin: 20px 0 80px;
     padding: 20px 40px;
     .point {
       font-size: 16px;
