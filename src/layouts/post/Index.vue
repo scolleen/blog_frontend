@@ -23,7 +23,7 @@
                 {{ item.title }}
                 </div>
               <div class="post-content">
-                <markdown-editor :content="item.content.substring(0, 400)" :highlight="highlight"></markdown-editor>
+                <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
               </div>
               <div class="post-tag">
                 <!-- <tag type="orange">#前端</tag> -->
@@ -268,7 +268,7 @@ article {
         }
         .post-footer {
           display: block;
-          margin: .7em 0 0 0;
+          margin: 1em 0 0 0;
           font-size: 13px;
           color: #666666;
           span {
