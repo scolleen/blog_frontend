@@ -71,7 +71,7 @@
           <div class="point">济南云微软件科技有限公司 （实习）（ 2016年9月 ~ 2017年3月 ）</div>
           <div class="experience unformal">
             <div class="img" @click="onLink('http://www.lendingbay.cn/')">
-              <img src="http://www.lendingbay.cn/static/MainSite/assets/img/qrcode1.jpg"/>
+              <img src="http://www.lendingbay.cn/static/MainSite/assets/img/qrcode1.jpg" width="100%"/>
               <h4>上海揽鼎杯</h4>
               <div class="cover">
                 <i class="iconfont icon-link"></i>
@@ -83,7 +83,7 @@
           </div>
           <div class="experience unformal">
             <div class="img" @click="onLink('https://www.jiyufund.com.cn/')">
-              <img src="https://www.jiyufund.com.cn/resources/new/images/logo1.png"/>
+              <img src="https://www.jiyufund.com.cn/resources/new/images/logo1.png" width="100%"/>
               <h4>上海基煜基金 • 基构通</h4>
               <div class="cover">
                 <i class="iconfont icon-link"></i>
@@ -95,7 +95,7 @@
           </div>
           <div class="experience unformal">
             <div class="img" @click="onLink('http://www.sse.com.cn/home/wechat/index/')">
-              <img src="http://www.sse.com.cn/images/layout/nav_logo.png"/>
+              <img src="http://www.sse.com.cn/images/layout/nav_logo.png" width="100%"/>
               <h4>上海证券交易所 • 微网站</h4>
               <div class="cover">
                 <i class="iconfont icon-link"></i>

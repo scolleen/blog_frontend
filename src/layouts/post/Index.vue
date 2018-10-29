@@ -22,7 +22,7 @@
                 <span class="number">{{ index + 1 }}</span>
                 {{ item.title }}
                 </div>
-              <div class="post-content">
+              <div class="post-content"  style="-webkit-box-orient: vertical;">
                 <markdown-editor :content="item.content" :highlight="highlight"></markdown-editor>
               </div>
               <div class="post-tag">
@@ -240,7 +240,7 @@ article {
           font-size: 1.5em;
           color: #333;
           line-height: 1.3em;
-            font-family: BankGothicLight;
+          font-family: BankGothicLight;
           cursor: pointer;
           .number {
             height: 1.3em;
@@ -258,9 +258,12 @@ article {
           font-size: 1em;
           line-height: 2;
           color: #333333;
+          /* autoprefixer: off */
           display: -webkit-box;
+          box-orient: vertical;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 9;
+          /* autoprefixer: on */
           overflow: hidden;
         }
         .post-tag {

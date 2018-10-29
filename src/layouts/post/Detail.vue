@@ -92,9 +92,11 @@ export default {
         }
       }).then(reslut => {
         this.commentList = reslut.body.payload
+        this.loading = false
       })
     },
     submitComment (options) {
+      this.loading = true
       let articleId = this.$route.params.id
       this.$request.post({
         url: api => api.comment.create,
@@ -103,8 +105,11 @@ export default {
           ...options
         }
       }).then(response => {
+        this.loading = false
         if (response.body.code === 1) {
-          window.toast('创建成功')
+          // 重新加载评论页面
+          this.getCommentInfo()
+          // window.toast('创建成功')
         } else {
           window.alert('创建失败')
         }
@@ -127,14 +132,6 @@ export default {
 <style lang="less" scoped>
 img {
   width: 100% !important;
-}
-article {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  box-sizing: border-box;
-  background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/sky.jpg') 100% no-repeat;
 }
 .container {
   height: 100%;
@@ -199,5 +196,16 @@ main {
       }
     }
   }
+}
+</style>
+
+<style scoped lang="css">
+article {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+  box-sizing: border-box;
+  background: url('https://images-1254073471.cos.ap-shanghai.myqcloud.com/sky.jpg') 100% no-repeat;
 }
 </style>
